@@ -1,8 +1,9 @@
 const Order = require('../models/orders');
 const mongoose = require('mongoose');
 
+//Get all the Orders // Protected Route // Auth Required
 exports.orders_get_all = ( req, res, next) =>{
-      //populate to show product details connected
+      //populate to show product details connected//
       Order.find().select('product quantity _id').populate('product','name').exec().then(doc =>{
             const response ={
                   count: doc.length,
@@ -25,6 +26,7 @@ exports.orders_get_all = ( req, res, next) =>{
       })
 };
 
+//Create a new Order // Protected Route
 exports.order_create = (req,res,next)=>{
       // const order = {
       //       orderName: req.body.name,
@@ -55,6 +57,7 @@ exports.order_create = (req,res,next)=>{
       })
 };
 
+// Get Order Details for a specific Order // Protected Route
 exports.order_get_with_id = (req,res,next)=>{
       const oid = req.params.oid;
       Order.findById(oid).populate('product').exec().then(doc=>{
@@ -77,6 +80,7 @@ exports.order_get_with_id = (req,res,next)=>{
       // });
 };
 
+//Delete a specific Order
 exports.order_delete_with_id = (req,res,next)=>{
       const id = req.params.oid;
       Order.remove({_id: id}).exec().then(result =>{

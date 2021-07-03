@@ -16,6 +16,8 @@ mongoose.connect('mongodb+srv://dbuser:' + process.env.MONGO_ATLAS_PW +'@cluster
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+
+//To Enable CORS//
 app.use((req,res,next) =>{
       res.header("Access-Control-Allow-Origin","*");
       res.header("Access-Control-Allow-Headers,Orgin,X-Requested-With, Content-Type,Accept,Authorization");
@@ -30,6 +32,7 @@ app.use('/product',productRoutes);
 app.use('/order',orderRoutes);
 app.use('/user',userRoutes);
 
+//if none of the routes is used
 app.use((req,res,next)=>{
       const error = new Error('Not Found');
       error.status = 404;

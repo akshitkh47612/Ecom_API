@@ -1,6 +1,7 @@
 const Product = require('../models/product');
 const mongoose = require('mongoose');
 
+// Get all Products // Unprotected Route
 exports.products_get_all = (req,res,next)=>{
       Product.find().select('name price _id').exec().then(docs =>{
           const response ={
@@ -25,6 +26,7 @@ exports.products_get_all = (req,res,next)=>{
       });
 };
 
+//Create a new Product // Protected Route
 exports.product_create = (req,res,next)=>{
       // const pro = {
       //       name: req.body.name,
@@ -57,6 +59,7 @@ exports.product_create = (req,res,next)=>{
       });
 };
 
+//Get a specific product detail //Protected Routes
 exports.product_get_with_id = (req,res,next)=>{
       const id = req.params.pid;
       Product.findById(id).exec().then(doc =>{
@@ -85,6 +88,7 @@ exports.product_get_with_id = (req,res,next)=>{
       // }
 };
 
+//Update a product detail //Protected Route
 exports.product_update_details = (req,res,next)=>{
       const id = req.params.pid;
       const updateOps = {};
@@ -102,6 +106,7 @@ exports.product_update_details = (req,res,next)=>{
       });
 };
 
+//Delete a Product // Protected Route
 exports.product_delete = (req,res,next)=>{
       const id = req.params.pid;
       Product.remove({_id: id}).exec().then(result =>{
