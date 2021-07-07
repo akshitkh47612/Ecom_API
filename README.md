@@ -1,5 +1,5 @@
 # Restful-API-JWT
-***RESTful API for e-commerce site including `Product Route`, `Orders Route` and `User Route`***
+***RESTful API for e-commerce site using NodeJS and MongoDB ***
 ## Used Technology and Dependencies
 - [JavaScript](https://github.com/nodejs) (NodeJS `v14.16.1`)
 - [MongoDb](https://github.com/mongodb/mongo)
